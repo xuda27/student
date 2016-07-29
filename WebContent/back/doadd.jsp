@@ -67,7 +67,7 @@
 				//将上传的图片写入到文件readFile中
 				item.write(readFile);
 				
-				//将图片在服务器中的路径存入到数据库中
+				//将图片路径在服务器中的路径存入到数据库中
 				photo = "upload/"+fileName;
 			}else{
 				photo ="";

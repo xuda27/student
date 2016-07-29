@@ -22,7 +22,7 @@
 		function addStudent() {
 			var sname = $.trim( $("#sname").val() );
 			if(sname != ""){
-				$("#add_student").submit();
+				$("#add_student").submit();//form表单submit 调用doadd.jsp
 			}else{
 				return;
 			}
