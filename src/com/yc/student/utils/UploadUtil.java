@@ -19,7 +19,7 @@ import com.jspsmart.upload.SmartUpload;
 import com.jspsmart.upload.SmartUploadException;
 
 public class UploadUtil {
-	private static final String PATH = "upload";
+	private static final String PATH = "../upload";
 	private static final String ALLOWED = "gif,jpg,png,txt,doc,xls"; //文件上传的文件类型
 	private static final String DENIDE = "exe,bat,jsp,html"; //不允许上传的文件类型
 	private static final int SINGLEFILESIZE = 2*1024*1024; //单个文件最大大小
@@ -30,6 +30,7 @@ public class UploadUtil {
 		SmartUpload upload = new SmartUpload();
 		
 		try {
+			//初始化
 			upload.initialize(pageContext);
 			upload.setDeniedFilesList(DENIDE);
 			upload.setAllowedFilesList(ALLOWED);
@@ -58,12 +59,26 @@ public class UploadUtil {
 			if(files != null && files.getCount() > 0){
 				Collection<File> cols = files.getCollection();
 				String fname = null;
+				String fpath = "";
+				String fieldName = null;
+				
 				for( File file : cols){
-					if( !file.isMissing() ){//如果上传的时候没有丢失数据
+					
+					if( !file.isMissing() ){//如果上传的时候没有丢失数据                                                                        后缀名
 						fname = new Date().getTime()+""+new Random().nextInt(1000)+"."+file.getFileExt();
 						file.saveAs(PATH+"/"+fname);
-						map.put(file.getFieldName(), PATH+"/"+fname);
+						fpath+=PATH+"/"+fname+",";
+						
+						fieldName=file.getFieldName();
 					}
+					
+				}
+				
+				if(fieldName != null){
+					if(fpath.contains(",")){
+						fpath = fpath.substring(0,fpath.lastIndexOf(","));
+					}
+					map.put(fieldName, fpath);
 				}
 			}
 		} catch (ServletException | IOException | SQLException

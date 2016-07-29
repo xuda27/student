@@ -57,7 +57,22 @@ public class Student {
 	}
 
 	public String getPhoto() {
-		return photo;
+		if( photo != null && !"".equals(photo) ){
+			return "<img src='../"+photo+"'/>";
+			
+		}else if( photo != null && photo.contains(",") ){
+			String[] str = photo.split(",");
+			StringBuffer sbf = new StringBuffer();
+			
+			for(String s : str){
+				sbf.append("<img src='../"+s+ "'>&nbsp;");
+			}
+			
+			return sbf.toString();
+			
+		}else{
+			return "";
+		}
 	}
 
 	public void setPhoto(String photo) {
