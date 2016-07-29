@@ -40,5 +40,13 @@
 			}
 		%>
 	</tbody>
+	</table>
+	<center><p>
+		<a href="">首页</a>
+		<a href="">上一页</a>
+		<a href="">下一页</a>
+		<a href="">尾页</a>
+		<span>当前第1页/总10页&nbsp;&nbsp;每页5页/共48条</span>	
+	</p></center>
 </body>
 </html>
