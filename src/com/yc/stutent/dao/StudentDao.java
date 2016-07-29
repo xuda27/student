@@ -60,10 +60,10 @@ public class StudentDao {
 		String sql = null;
 		List<String> param = new ArrayList<String>();
 		if( cid != null){
-			sql = "select count(sid) as count from student s, class c where s.cid = c.cid and cid =?";
+			sql = "select count(sid) as count from student s, classes c where s.cid = c.cid and cid =?";
 			param.add( String.valueOf(cid) );
-		}else{
-			sql = "select count(sid) as count from student s, class c where s.cid = c.cid";
+		}else if( cid == null ){
+			sql = "select count(sid) as count from student s, classes c where s.cid = c.cid";
 		}
 		
 		double count = db.doSelectFunction(sql, param);

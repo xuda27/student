@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title></title>
 	<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
-
+	<script type="text/javascript" src="js/showPic.js"></script>
 	<script type="text/javascript">
 		$( function() {
 			$.post( "back/doaddclasses.jsp", {op:"findClasses"}, function(data) {
@@ -38,8 +38,9 @@
 		姓名：<input type="text" name="sname" id="sname">
 		年龄：<input type="number" name="age" id="age">
 		联系方式：<input type="text" name="tel" id="tel">
-		图像：<input type="file" name="photo" id="photo" multiple="multiple">
-		<input type="button" value="添加" onclick="addStudent()">
+		图像：<input type="file" name="photo" id="photo" multiple="multiple" onchange="setImagePreviews(this,'showPicDiv')" >
+		<input type="button" value="添加" onclick="addStudent()" >
 	</form>
+	<div id="showPicDiv" style="width:840px;"></div>
 </body>
 </html>

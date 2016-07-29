@@ -1,3 +1,4 @@
+<%@page import="com.yc.stutent.dao.PageUtil"%>
 <%@page import="com.yc.student.entity.Student"%>
 <%@page import="java.util.List"%>
 <%@page import="com.yc.stutent.dao.StudentDao"%>
@@ -24,7 +25,17 @@
 	<tbody id="show_student" align="center">
 		<%
 			StudentDao studentDao = new StudentDao();
-			List<Student> list = studentDao.find();
+		
+			Object obj = session.getAttribute("pageUtil");
+			PageUtil pageUtil;
+			if(obj == null ){
+				pageUtil = new PageUtil(5,studentDao.getTotal(null));
+				session.setAttribute("pageUtil", pageUtil);
+			}else{
+				pageUtil = (PageUtil)obj;
+			}
+			
+			List<Student> list = studentDao.find(pageUtil.getPageNo(), pageUtil.getPageSize());
 			for(Student stu : list){
 		%>
 		
@@ -42,11 +53,11 @@
 	</tbody>
 	</table>
 	<center><p>
-		<a href="">首页</a>
-		<a href="">上一页</a>
-		<a href="">下一页</a>
-		<a href="">尾页</a>
-		<span>当前第1页/总10页&nbsp;&nbsp;每页5页/共48条</span>	
+		<a href="dopage.jsp?op=1">首页</a>
+		<a href="dopage.jsp?op=2">上一页</a>
+		<a href="dopage.jsp?op=3">下一页</a>
+		<a href="dopage.jsp?op=4">尾页</a>
+		<span>当前第<%= pageUtil.getPageNo() %>页/总<%= pageUtil.getTotalPage() %>页&nbsp;&nbsp;每页<%=pageUtil.getPageSize() %>条/共<%=pageUtil.getTotalSize() %>条</span>	
 	</p></center>
 </body>
 </html>
