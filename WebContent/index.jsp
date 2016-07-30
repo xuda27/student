@@ -186,10 +186,12 @@
 					<th>操作</th>
 				</tr>
 			</thead>
+			<!-- 学生信息 -->
 			<tbody id="show_student" align="center">
 			
 			</tbody>
 		</table>
+		<!--   -->
 		<center id="pageInfo"></center>
 	</fieldset>
 	
