@@ -1,5 +1,5 @@
+<%@page import="com.yc.student.utils.PageUtil"%>
 <%@page import="com.yc.stutent.dao.StudentDao"%>
-<%@page import="com.yc.stutent.dao.PageUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%

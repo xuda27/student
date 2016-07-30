@@ -1,5 +1,6 @@
  function setImagePreviews(imagesObj,divid) {
         var dd = document.getElementById(divid);
+        dd.style.display = 'block';
         dd.innerHTML = "";
         var fileList = imagesObj.files;
         for (var i = 0; i < fileList.length; i++) {            

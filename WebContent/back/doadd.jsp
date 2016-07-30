@@ -80,8 +80,9 @@
 	UploadUtil upload = new UploadUtil();
 	Map<String,String> map = upload.upload(pageContext);
 	if(studentDao.add( map.get("cid"), map.get("sname"), map.get("age"), map.get("tel"), map.get("photo") ) > 0){
-		response.sendRedirect("show1.jsp");
+		out.print(1);
 	}else{
-		response.sendRedirect("../add.jsp");
+		//response.sendRedirect("../add.jsp");
+		out.print(0);
 	}
 %>
