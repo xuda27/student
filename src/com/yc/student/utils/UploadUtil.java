@@ -47,7 +47,7 @@ public class UploadUtil {
 			Enumeration<String> names = request.getParameterNames();
 			
 			String str = null;
-			while( names.hasMoreElements()){
+			while( names.hasMoreElements() ){
 				str=names.nextElement();
 				map.put(str, request.getParameter(str));
 			}
@@ -58,7 +58,7 @@ public class UploadUtil {
 			//说明确实有文件要上传
 			if(files != null && files.getCount() > 0){
 				Collection<File> cols = files.getCollection();
-				String fname = null;
+				String fname = null;//文件名
 				String fpath = "";
 				String fieldName = null;
 				
@@ -66,10 +66,10 @@ public class UploadUtil {
 					
 					if( !file.isMissing() ){//如果上传的时候没有丢失数据                                                                        后缀名
 						fname = new Date().getTime()+""+new Random().nextInt(1000)+"."+file.getFileExt();
-						file.saveAs(PATH+"/"+fname);
-						fpath+=PATH+"/"+fname+",";
+						file.saveAs(PATH+"/"+fname);//保存
+						fpath+=PATH+"/"+fname+",";//拼接字符串路径
 						
-						fieldName=file.getFieldName();
+						fieldName=file.getFieldName();//获取表单元素名
 					}
 					
 				}

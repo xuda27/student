@@ -1,4 +1,4 @@
-<%@page import="com.yc.stutent.dao.PageUtil"%>
+<%@page import="com.yc.student.utils.PageUtil"%>
 <%@page import="com.yc.student.entity.Student"%>
 <%@page import="java.util.List"%>
 <%@page import="com.yc.stutent.dao.StudentDao"%>

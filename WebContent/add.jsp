@@ -9,14 +9,14 @@
 	<script type="text/javascript" src="js/showPic.js"></script>
 	<script type="text/javascript">
 		$( function() {
-			$.post( "back/doaddclasses.jsp", {op:"findClasses"}, function(data) {
+			$.post( "back/doaddclasses.jsp", {op:"findClasses"}, function(data) {// String(url), Map(data), Function(callback), String(type)
 				if( data != "" ){
 					$.each(data,function(index, item){
 						$("#classesInfo").append( $("<option value='"+item.cid+"'>"+item.cname+"</option>") );
 					});
 					//json：{}
 				}
-			},"json" );
+			},"json" );//doaddclasses.jsp响应的是一个json类型的班级信息格式
 		});
 		
 		function addStudent() {

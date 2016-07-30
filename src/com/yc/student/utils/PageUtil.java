@@ -1,4 +1,4 @@
-package com.yc.stutent.dao;
+package com.yc.student.utils;
 
 public class PageUtil {
 	private int pageNo = 1;
