@@ -45,7 +45,7 @@
 			if(cname === ""){
 				$cname.next().text("请输入班级名称。。。").css("color", "red");
 			}else{
-				$.post("back/doaddclasses.jsp", {op:"addClasses",cname:cname}, function(data){
+				$.post("classesServlet", {op:"addClasses",cname:cname}, function(data){
 					data = parseInt( $.trim(data) );
 					if( data>0 ){
 						$cname.next().text("添加班级成功。。。").css("color", "green");
@@ -60,7 +60,7 @@
 		}
 		
 		$( function() {
-			$.post( "back/doaddclasses.jsp", {op:"findClasses"}, function(data) {
+			$.post( "classesServlet", {op:"findClasses"}, function(data) {
 				if( data != "" ){
 					$.each(data,function(index, item){
 						$("#classesInfo").append( $("<option value='"+item.cid+"'>"+item.cname+"</option>") );
@@ -78,7 +78,7 @@
 			var cid = $.trim( $("#classesInfo").val() );
 			
 			$.ajaxFileUpload( {
-				url : "back/doadd.jsp",
+				url : "studentServlet?op=addStudent",
 				secureuri : false,
 				fileElementId : "photo", //要上传的文件的id，如果哦呦多个file的表单元素，则用数组
 				dataType : "json",

@@ -19,7 +19,7 @@ import com.jspsmart.upload.SmartUpload;
 import com.jspsmart.upload.SmartUploadException;
 
 public class UploadUtil {
-	private static final String PATH = "../upload";
+	public static String PATH = "../upload";
 	private static final String ALLOWED = "gif,jpg,png,txt,doc,xls"; //文件上传的文件类型
 	private static final String DENIDE = "exe,bat,jsp,html"; //不允许上传的文件类型
 	private static final int SINGLEFILESIZE = 2*1024*1024; //单个文件最大大小
