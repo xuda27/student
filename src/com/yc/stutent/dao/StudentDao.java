@@ -70,4 +70,18 @@ public class StudentDao {
 		return (int) count;
 	}
 	
+	public Student login(String uname, String pwd){
+		String sql = "select s.*, cname from student s ,classes c where s.cid = c.cid and sname =? and sid =?";
+		List<String> param = new ArrayList<String>();
+		param.add(uname);
+		param.add(pwd);
+		
+		List<Student> list = db.find(sql, param, Student.class);
+		
+		if( list != null && list.size() > 0 ){
+			return list.get(0);
+		}else{
+			return null;
+		}
+	}
 }

@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,11 +14,9 @@ import com.yc.student.entity.Classes;
 import com.yc.stutent.dao.ClassesDao;
 
 
-public class ClassesServlet extends HttpServlet {
+public class ClassesServlet extends BasicServlet {
 	private static final long serialVersionUID = 1L;
-	private PrintWriter out;
 	
-	ClassesDao classesDao = new ClassesDao();
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,10 +27,8 @@ public class ClassesServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
+		super.doPost(request, response);
 		
-		out = response.getWriter();
 		String op = request.getParameter("op");
 		
 		if( "addClasses".equals(op) ){
@@ -50,7 +45,15 @@ public class ClassesServlet extends HttpServlet {
 	 */
 	private void findClass(HttpServletRequest request,
 			HttpServletResponse response) {
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		ClassesDao classesDao = new ClassesDao();
 		List<Classes> list = classesDao.finds();
+		
 		JSONArray json = JSONArray.fromObject(list);
 		
 		out.print(json);
@@ -66,6 +69,14 @@ public class ClassesServlet extends HttpServlet {
 	private void addClass(HttpServletRequest request,
 			HttpServletResponse response) {
 		String cname = request.getParameter("cname");
+		
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		ClassesDao classesDao = new ClassesDao();
 		int flag = classesDao.add(cname);
 		
 		out.print(flag);
