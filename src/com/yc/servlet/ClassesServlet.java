@@ -34,7 +34,6 @@ public class ClassesServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		out = response.getWriter();
-		
 		String op = request.getParameter("op");
 		
 		if( "addClasses".equals(op) ){
@@ -67,7 +66,7 @@ public class ClassesServlet extends HttpServlet {
 	private void addClass(HttpServletRequest request,
 			HttpServletResponse response) {
 		String cname = request.getParameter("cname");
-		int flag=classesDao.add(cname);
+		int flag = classesDao.add(cname);
 		
 		out.print(flag);
 		out.flush();

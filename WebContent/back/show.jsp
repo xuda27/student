@@ -24,18 +24,8 @@
 	</thead>
 	<tbody id="show_student" align="center">
 		<%
-			StudentDao studentDao = new StudentDao();
-		
-			Object obj = session.getAttribute("pageUtil");
-			PageUtil pageUtil;
-			if(obj == null ){
-				pageUtil = new PageUtil(5,studentDao.getTotal(null));
-				session.setAttribute("pageUtil", pageUtil);
-			}else{
-				pageUtil = (PageUtil)obj;
-			}
-			
-			List<Student> list = studentDao.find(pageUtil.getPageNo(), pageUtil.getPageSize());
+			PageUtil pageUtil = (PageUtil)session.getAttribute("pageUtil");			
+			List<Student> list = (List<Student>)session.getAttribute("studentInfo");
 			for(Student stu : list){
 		%>
 		
